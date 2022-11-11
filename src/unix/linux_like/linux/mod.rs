@@ -3719,8 +3719,6 @@ safe_f! {
     }
 }
 
-cfg_if! {
-    if #[cfg(not(target_env = "uclibc"))] {
         extern "C" {
             pub fn aio_read(aiocbp: *mut aiocb) -> ::c_int;
             pub fn aio_write(aiocbp: *mut aiocb) -> ::c_int;
@@ -3785,8 +3783,6 @@ cfg_if! {
                 times: *const ::timeval
             ) -> ::c_int;
         }
-    }
-}
 
 extern "C" {
     #[cfg_attr(not(target_env = "musl"), link_name = "__xpg_strerror_r")]
